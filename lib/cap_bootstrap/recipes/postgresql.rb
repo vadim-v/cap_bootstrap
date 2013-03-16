@@ -6,10 +6,10 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :postgresql do
     desc "Install the latest stable release of PostgreSQL."
-    task :install, roles: :db, only: {primary: true} do
-      run "#{sudo} add-apt-repository ppa:pitti/postgresql"
-      run "#{sudo} apt-get -y update"
-      run "#{sudo} apt-get -y install postgresql libpq-dev"
+    task :install, roles: :db, only: {primary: true} dosudo
+      sudo "add-apt-repository ppa:pitti/postgresql --yes"
+      sudo "apt-get -y update"
+      sudo "apt-get -y install postgresql libpq-dev"
     end
     after "deploy:install", "postgresql:install"
 

@@ -6,6 +6,13 @@ Capistrano tasks for deploying Rails applications using Ubuntu 10.04, rbenv, ngi
 * [Capistrano Tasks](http://railscasts.com/episodes/133-capistrano-tasks-revised) (Free)
 * [Capistrano Recipes](http://railscasts.com/episodes/337-capistrano-recipes) (Pro)
 
+
+## UPD: March 16, 2013
+
+Ready to provision Ubuntu 12.10
+
+# --------------------------------------------------
+
 I am not affiliated with Railscasts, I'm just a fan.
 
 ## Requirements

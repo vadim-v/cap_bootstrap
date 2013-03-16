@@ -1,6 +1,7 @@
 Capistrano::Configuration.instance(:must_exist).load do
   set_default :ruby_version, "1.9.3-p392"
   set_default :rbenv_bootstrap, "bootstrap-ubuntu-12-04"
+  _cset(:root_password) { Capistrano::CLI.password_prompt "Root Password: " }
 
   namespace :rbenv do
     desc "Install rbenv, Ruby, and the Bundler gem"
@@ -18,12 +19,19 @@ Capistrano::Configuration.instance(:must_exist).load do
       run "mv ~/.bashrc.tmp ~/.bashrc"
       run %q{export PATH="$HOME/.rbenv/bin:$PATH"}
       run %q{eval "$(rbenv init -)"}
-      run "rbenv #{rbenv_bootstrap}"
-      run "rbenv install #{ruby_version}"
+      run "rbenv #{rbenv_bootstrap}" do |channel, stream, data|
+        puts data if data.length >= 3
+        channel.send_data("#{root_password}\n") if data.include? 'password'
+      end
+      run "rbenv install #{ruby_version}" unless versions.include?(ruby_version)
       run "rbenv global #{ruby_version}"
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end
     after "deploy:install", "rbenv:install"
+
+    def versions(options={})
+      capture("rbenv versions --bare", options).split(/(?:\r?\n)+/)
+    end
   end
 end
