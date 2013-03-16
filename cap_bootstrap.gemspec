@@ -4,8 +4,8 @@ require File.expand_path('../lib/cap_bootstrap/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Christopher Saylor"]
   gem.email         = ["chris@justhack.com"]
-  gem.description   = %q{Capistrano tasks for deploying Rails applications using Ubuntu 10.04, rbenv, nginx, Unicorn and PostgreSQL.}
-  gem.summary       = %q{Capistrano tasks for deploying Rails applications using Ubuntu 10.04, rbenv, nginx, Unicorn and PostgreSQL.}
+  gem.description   = %q{Capistrano tasks for deploying Rails applications using Ubuntu 12.10, rbenv, nginx, Unicorn and PostgreSQL.}
+  gem.summary       = %q{Capistrano tasks for deploying Rails applications using Ubuntu 12.10, rbenv, nginx, Unicorn and PostgreSQL.}
   gem.homepage      = "http://github.com/cwsaylor/cap_bootstrap"
 
   gem.files         = `git ls-files`.split($\)
